@@ -3,13 +3,15 @@
 #include <locale.h> //biblioteca de alocações de texto por região
 #include <string.h> //biblioteca responsável por cuidar das string
 
-int registro()
+int registro() //Função responsavel por cadastrar os usuários no sistema
 {
+    //inicio criação de variáveis/string
 	char arquivo[40];
 	char cpf[40];
 	char nome[40];
 	char sobrenome[40];
 	char cargo[40];
+	// final da criação de variáveis/string
 	
 	printf("Digite o CPF a ser cadastrado:");
 	scanf("%s", cpf);
@@ -84,13 +86,28 @@ int consulta()
 	}
     
     system("pause");
+ 
     
 }
 
 int deletar()
 {
-	 printf("Você escolheu deletar nomes!\n");
-	 system("pause");
+    char cpf[40];
+
+   	 printf("Digite o CPF do usuário a ser deletado:");
+   	 scanf("%s",cpf);
+	 
+	 remove(cpf);
+	 
+	 FILE *file;
+	 file = fopen(cpf,"r");
+	 
+	 if(file == NULL)
+	 {
+	 	printf("O usuário não se encontra no sistema!.\n");
+	 	system("pause");
+    }
+    
 }
 
 
@@ -138,7 +155,8 @@ int main()
 			return 0;
 			break;
 	        
-	        default:
+	       
+		    default:
 	        printf("Essa opção não está disponivel\n");
 		    system("pause");
 		    break;
